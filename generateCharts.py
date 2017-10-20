@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import time
 
 
 # Import class from .csv in project folder
@@ -21,19 +22,40 @@ def importClass(fileName):
     for row in csv_f:
         index = int(row[0])
         Name = row[1]
-        PositivePairs = [int(pp) for pp in row[2].split(',')]
-        NegativePairs = [int(np) for np in row[3].split(',')]
+        if not(row[2] == ""):
+            PositivePairs = [int(pp) for pp in row[2].split(',')]
+        else:
+            PositivePairs = ""
+
+        if not(row[3] == ""):
+            NegativePairs = [int(np) for np in row[3].split(',')]
+        else:
+            NegativePairs = ""
+
         LocationPref = [lp.upper().strip() for lp in row[4].split(',')]
         newDict = {'Name':Name, 'PositivePairs':PositivePairs, 'NegativePairs':NegativePairs, 'LocationPref':LocationPref}
         studentInfo.append(newDict)
 
+        #debugging
+        #print("Student %d data: " % index + str(studentInfo[index]))
+
     return studentInfo
 
+
+def randomGen():
+    tStart = time.clock()
+    importClass('StudentData.csv')
+    tEnd = time.clock()
+    print(str(tEnd-tStart))
+
+#def smartGen():
+
+
+randomGen()
 
 # To do:
 # Create and comment the following functions:
 #   generateValidSeatingChart
 #   generateRandomSeatingChart
 #   evaluateSeatingChart
-#   recordTime
 #   exportClassesToCSV
