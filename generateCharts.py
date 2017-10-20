@@ -99,11 +99,20 @@ def evaluateSeatingChart(seatingChart, studentInfo, FMR):
 
     for group in range(len(seatingChart)):
         negPairs = []
+        # create negativePairs list for group
+        for s in seatingChart[group]:
+            for n in studentInfo[int(s)]['NegativePairs']:
+                negPairs.append(int(n))
+
+        # change score for each student
         for seat in range(len(seatingChart[0])):
             student = int(seatingChart[group][seat])
-            negPairs.append(studentInfo[student]['NegativePairs'])
 
+            print("Students " + str(negPairs) + " shouldn't be in group %d" % group)
             # if any negative pair is in this group, return -1
+            if (student == 8):
+                print ("is student 8 in negPairs? " + str(student in negPairs))
+
             if student in negPairs:
                 #debugging
                 #print("Conflict check failed because Student %d shouldn't sit with " % student + str(studentInfo[student]['NegativePairs']) + " but their group is " + str(seatingChart[group]))
