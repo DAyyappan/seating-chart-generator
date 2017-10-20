@@ -41,10 +41,49 @@ def importClass(fileName):
 
     return studentInfo
 
+def generateRandomSeatingChart(studentInfo, numGroups, groupSize):
+    #initialize empty seating chart
+    seatingChart = np.zeros((numGroups,groupSize))
+
+    #track which students have been assigned
+    assigned = np.zeros(len(studentInfo), dtype = bool)
+
+    #initialize seat/group counters
+    groupNum = 0
+    seatNum = 0
+
+    for student in range(1, len(studentInfo)):
+        while True:
+            n = np.random.random_integers(1, len(studentInfo)-1)
+
+            if (not assigned[n]):
+                seatingChart[groupNum, seatNum] = n
+                assigned[n] = True
+
+                #debugging
+                #print ("Student %d assigned to group %d, seat %d. " % (n, groupNum+1, seatNum+1))
+
+                if(groupNum == (numGroups-1)):
+                    seatNum += 1
+                    groupNum = 0
+                else:
+                    groupNum += 1
+
+
+                break
+
+
+    return seatingChart
 
 def randomGen():
     tStart = time.clock()
-    importClass('StudentData.csv')
+    studentInfo = importClass('StudentData.csv')
+    numGroups = 6
+    groupSize = 5
+
+    seatingChart = generateRandomSeatingChart(studentInfo, numGroups, groupSize)
+
+    print(str(seatingChart))
     tEnd = time.clock()
     print(str(tEnd-tStart))
 
@@ -56,6 +95,6 @@ randomGen()
 # To do:
 # Create and comment the following functions:
 #   generateValidSeatingChart
-#   generateRandomSeatingChart
+#   generateRandomSeatingChart -- DONE
 #   evaluateSeatingChart
 #   exportClassesToCSV
