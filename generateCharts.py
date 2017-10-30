@@ -75,11 +75,7 @@ def generateRandomSeatingChart(studentInfo, numGroups, groupSize):
                 #debugging
                 #print ("Student %d assigned to group %d, seat %d. " % (n, groupNum+1, seatNum+1))
 
-                if(groupNum == (numGroups-1)):
-                    seatNum += 1
-                    groupNum = 0
-                else:
-                    groupNum += 1
+                groupNum = stepGroups(groupNum, seatNum, numGroups)
 
 
                 break
@@ -133,6 +129,94 @@ def evaluateSeatingChart(seatingChart, studentInfo, FMR):
 
     return score
 
+
+def generateSmartSeatingChart(studentInfo, numGroups, groupSize):
+# smartly generate seating chart for all students given number of groups and group size
+# arg studentInfo -- list of dictionaries for each student
+# arg numGroups -- int number of groups
+# arg groupSize -- int size of groups
+# return score, seatingChart -- seating chart score, numGroups x groupSize matrix of VALID seating assignment
+
+    score = 0
+
+    #assign students in order to groups until complete OR impossible
+    success, seatingChart = assignSmartSeats(studentInfo, numGroups, groupSize)
+
+    #score chart
+    if (success == False):
+        score = -1
+    else:
+        score = 1
+
+
+    return score, seatingChart
+
+def assignSmartSeats(studentInfo, numGroups, groupSize):
+# smartly generate seating chart for all students given number of groups and group size
+# arg studentInfo -- list of dictionaries for each student
+# arg numGroups -- int number of groups
+# arg groupSize -- int size of groups
+# return seatingChart -- numGroups x groupSize matrix of VALID seating assignment
+
+    #get random seed
+    student = np.random.random_integers(1, len(studentInfo)-1)
+
+    # initialize empty seating chart
+    seatingChart = []
+    for l in range(numGroups):
+        seatingChart.append(list(range(0)))
+
+    # track which students have been assigned
+    assigned = np.zeros(len(studentInfo), dtype = bool)
+
+    # initialize seat/group counters, success boolean
+    groupNum = 0
+    seatNum = 0
+    checkGroupCounter = 0
+    success = False
+    negList = []
+    for l in range(numGroups):
+        negList.append(list(range(0)))
+
+    while (assigned[student] == False):
+        if(student not in negList[groupNum]):
+            seatingChart[groupNum].append(student)
+            negList[groupNum] = appendNegs(negList[groupNum], studentInfo[int(student)]['NegativePairs'])
+            groupNum = stepGroups(groupNum, seatNum, numGroups)
+            checkGroupCounter = 0
+            assigned[student] = True
+            if(student == len(studentInfo)-1):
+                student = 1
+            else:
+                student += 1
+        else:
+            if(checkGroupCounter == numGroups):
+                return success, seatingChart
+            else:
+                groupNum = stepGroups(groupNum, seatNum, numGroups)
+                checkGroupCounter += 1
+
+    success = True
+    return success, seatingChart
+
+
+def appendNegs(negList, negativePairs):
+
+    for n in negativePairs:
+        negList.append(int(n))
+
+    return negList
+
+def stepGroups(groupNum, seatNum, numGroups):
+    if(groupNum == (numGroups-1)):
+        seatNum += 1
+        groupNum = 0
+    else:
+        groupNum += 1
+
+    return groupNum
+
+
 def randomGen():
 # execute and time random generation THEN conflict checking method of seating chart generation
     tStart = time.clock()
@@ -149,10 +233,30 @@ def randomGen():
     tEnd = time.clock()
     print(str(tEnd-tStart))
 
-#def smartGen():
+def smartGen():
+# execute and time random generation THEN conflict checking method of seating chart generation
+    tStart = time.clock()
+    studentInfo = importClass('StudentData.csv')
+    numGroups = 6
+    groupSize = 5
+    classArrangement = {'F':[1,2], 'M':[3,4], 'R':[5,6]}
+
+    score, seatingChart = generateSmartSeatingChart(studentInfo, numGroups, groupSize)
+
+    print("score = %d" % score)
+    print ("seating chart is... " + str(seatingChart))
+
+def testPythonStuff():
+    testList = []
+    for l in range(5):
+        testList.append(list(range(0)))
+
+    testList[1].append(2)
+    print(str(testList))
+
+smartGen()
 
 
-randomGen()
 
 # To do:
 # Create and comment the following functions:
