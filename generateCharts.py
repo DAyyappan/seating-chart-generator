@@ -44,46 +44,6 @@ def importClass(fileName):
     return studentInfo
 
 
-
-
-def generateRandomSeatingChart(studentInfo, numGroups, groupSize):
-# randomly generate seating chart for all students given number of groups and group size
-# arg studentInfo -- list of dictionaries for each student
-# arg numGroups -- int number of groups
-# arg groupSize -- int size of groups
-# return seatingChart -- numGroups x groupSize matrix of seating assignments
-
-    # initialize empty seating chart
-    seatingChart = np.zeros((numGroups,groupSize))
-
-    # track which students have been assigned
-    assigned = np.zeros(len(studentInfo), dtype = bool)
-
-    # initialize seat/group counters
-    groupNum = 0
-    seatNum = 0
-
-    # assign random seat to each student filling in seat 1 for every group, then seat 2, etc.
-    for student in range(1, len(studentInfo)):
-        while True:
-            n = np.random.random_integers(1, len(studentInfo)-1)
-
-            if (not assigned[n]):
-                seatingChart[groupNum, seatNum] = n
-                assigned[n] = True
-
-                #debugging
-                #print ("Student %d assigned to group %d, seat %d. " % (n, groupNum+1, seatNum+1))
-
-                groupNum = stepGroups(groupNum, seatNum, numGroups)
-
-
-                break
-
-
-    return seatingChart
-
-
 def evaluateSeatingChart(seatingChart, studentInfo, FMR):
 # score seating chart based on student preferences
 # arg seatingChart -- matrix of students in groups
@@ -104,14 +64,8 @@ def evaluateSeatingChart(seatingChart, studentInfo, FMR):
         for seat in range(len(seatingChart[0])):
             student = int(seatingChart[group][seat])
 
-            print("Students " + str(negPairs) + " shouldn't be in group %d" % group)
-            # if any negative pair is in this group, return -1
-            if (student == 8):
-                print ("is student 8 in negPairs? " + str(student in negPairs))
 
             if student in negPairs:
-                #debugging
-                #print("Conflict check failed because Student %d shouldn't sit with " % student + str(studentInfo[student]['NegativePairs']) + " but their group is " + str(seatingChart[group]))
                 return -1
 
             # if any positive pair is in this group, +1
@@ -130,26 +84,74 @@ def evaluateSeatingChart(seatingChart, studentInfo, FMR):
     return score
 
 
-def generateSmartSeatingChart(studentInfo, numGroups, groupSize):
+def generateSmartSeatingChart(studentInfo, numGroups, groupSize, FMR):
 # smartly generate seating chart for all students given number of groups and group size
 # arg studentInfo -- list of dictionaries for each student
 # arg numGroups -- int number of groups
 # arg groupSize -- int size of groups
 # return score, seatingChart -- seating chart score, numGroups x groupSize matrix of VALID seating assignment
 
-    score = 0
-
+    success = False
+    attempts = 0
     #assign students in order to groups until complete OR impossible
-    success, seatingChart = assignSmartSeats(studentInfo, numGroups, groupSize)
+    while (success == False):
+        attempts += 1
+        success, seatingChart = assignSmartSeats(studentInfo, numGroups, groupSize)
+
+    #convert chart from lists to 2-D array
+    seatingChart = convertChartToMatrix(seatingChart, groupSize)
 
     #score chart
-    if (success == False):
-        score = -1
-    else:
-        score = 1
-
+    score = scoreChart(studentInfo, seatingChart, FMR)
+    #print("Attempt %d successful with score %d" % (attempts, score))
 
     return score, seatingChart
+
+def convertChartToMatrix(seatingChart, groupSize):
+# convert list of groups to 2-D array
+# arg seatingChart -- list of groups
+# return newSeatingChart -- numGroups x groupSize matrix
+
+    newSeatingChart = np.zeros((len(seatingChart),groupSize))
+
+
+    for group in range(len(seatingChart)):
+        seat = 0
+        for s in seatingChart[group]:
+            newSeatingChart[group][seat] = int(s)
+            seat += 1
+
+    return newSeatingChart
+
+
+def scoreChart(studentInfo, seatingChart, FMR):
+# score seating chart based on student preferences and seats
+# arg studentInfo -- list of dictionaries for each student
+# arg seatingChart -- list of seating charts
+# arg FMR -- dictionary of front/middle/rear tables
+# return score -- seating chart score
+
+    score = 0
+
+    for group in range(len(seatingChart)):
+        # change score for each student
+        for seat in range(len(seatingChart[0])):
+            student = int(seatingChart[group][seat])
+
+            # if any positive pair is in this group, +1
+            for pos in studentInfo[student]['PositivePairs']:
+                if pos in seatingChart[group]:
+                    score += 1
+
+            # if student is sitting where they prefer, +1
+            # if student is sitting the opposite of where they prefer, -2
+            for loc in studentInfo[student]['LocationPref']:
+                if (group+1) in FMR[loc]:
+                    score += 1
+                if ((loc == 'F') and ((group+1) in FMR['R'])) or ((loc == 'R') and ((group+1) in FMR['F'])):
+                    score -= 2
+
+    return score
 
 def assignSmartSeats(studentInfo, numGroups, groupSize):
 # smartly generate seating chart for all students given number of groups and group size
@@ -158,8 +160,10 @@ def assignSmartSeats(studentInfo, numGroups, groupSize):
 # arg groupSize -- int size of groups
 # return seatingChart -- numGroups x groupSize matrix of VALID seating assignment
 
+    numStudents = len(studentInfo)-1
+
     #get random seed
-    student = np.random.random_integers(1, len(studentInfo)-1)
+    student = np.random.random_integers(1, numStudents)
 
     # initialize empty seating chart
     seatingChart = []
@@ -167,7 +171,7 @@ def assignSmartSeats(studentInfo, numGroups, groupSize):
         seatingChart.append(list(range(0)))
 
     # track which students have been assigned
-    assigned = np.zeros(len(studentInfo), dtype = bool)
+    assigned = np.zeros(numStudents+1, dtype = bool)
 
     # initialize seat/group counters, success boolean
     groupNum = 0
@@ -178,23 +182,26 @@ def assignSmartSeats(studentInfo, numGroups, groupSize):
     for l in range(numGroups):
         negList.append(list(range(0)))
 
-    while (assigned[student] == False):
-        if(student not in negList[groupNum]):
-            seatingChart[groupNum].append(student)
-            negList[groupNum] = appendNegs(negList[groupNum], studentInfo[int(student)]['NegativePairs'])
-            groupNum = stepGroups(groupNum, seatNum, numGroups)
-            checkGroupCounter = 0
-            assigned[student] = True
-            if(student == len(studentInfo)-1):
-                student = 1
+    while (np.sum(assigned) < numStudents):
+        if (assigned[student] == False):
+            if((student not in negList[groupNum]) and (len(seatingChart[groupNum]) < groupSize)):
+                seatingChart[groupNum].append(student)
+                #print ("student %d assigned to group %d" % (student, groupNum))
+                #print ("new seating chart = \n " + str(seatingChart))
+                negList[groupNum] = appendNegs(negList[groupNum], studentInfo[int(student)]['NegativePairs'])
+                groupNum, discard = stepGroups(groupNum, seatNum, numGroups)
+                checkGroupCounter = 0
+                assigned[student] = True
+                student = np.random.random_integers(1, numStudents)
             else:
-                student += 1
+                if(checkGroupCounter == numGroups):
+                    #print("failed to assign student %d" % student)
+                    return success, seatingChart
+                else:
+                    groupNum, discard = stepGroups(groupNum, seatNum, numGroups)
+                    checkGroupCounter += 1
         else:
-            if(checkGroupCounter == numGroups):
-                return success, seatingChart
-            else:
-                groupNum = stepGroups(groupNum, seatNum, numGroups)
-                checkGroupCounter += 1
+            student = np.random.random_integers(1, numStudents)
 
     success = True
     return success, seatingChart
@@ -214,37 +221,44 @@ def stepGroups(groupNum, seatNum, numGroups):
     else:
         groupNum += 1
 
-    return groupNum
+    return groupNum, seatNum
 
-
-def randomGen():
+def smartGen(studentInfo):
 # execute and time random generation THEN conflict checking method of seating chart generation
-    tStart = time.clock()
-    studentInfo = importClass('StudentData.csv')
-    numGroups = 6
-    groupSize = 5
+    numGroups = 14
+    groupSize = 2
     classArrangement = {'F':[1,2], 'M':[3,4], 'R':[5,6]}
 
-    seatingChart = generateRandomSeatingChart(studentInfo, numGroups, groupSize)
-    score = evaluateSeatingChart(seatingChart, studentInfo, classArrangement)
+    score, seatingChart = generateSmartSeatingChart(studentInfo, numGroups, groupSize, classArrangement)
 
-    print(str(seatingChart))
-    print ("Seating chart score: %d" % score)
+    return score, seatingChart
+
+
+def contest():
+    studentInfo = importClass('StudentData.csv')
+    numCharts = 3000
+
+    #smartGen
+    tStart = time.clock()
+    score = -1
+    maxScore = 0
+    bestSeats = []
+
+    for n in range(numCharts):
+        while (score <= 0):
+            score, seatingChart = smartGen(studentInfo)
+        if (score > maxScore):
+            bestSeats = seatingChart
+            maxScore = score
+        score = 0
+
     tEnd = time.clock()
-    print(str(tEnd-tStart))
+    totalTime = tEnd - tStart
+    print("Best score = %d after %f seconds " % (maxScore, totalTime))
+    print("Best Seating Chart:" )
+    print(str(bestSeats))
 
-def smartGen():
-# execute and time random generation THEN conflict checking method of seating chart generation
-    tStart = time.clock()
-    studentInfo = importClass('StudentData.csv')
-    numGroups = 6
-    groupSize = 5
-    classArrangement = {'F':[1,2], 'M':[3,4], 'R':[5,6]}
 
-    score, seatingChart = generateSmartSeatingChart(studentInfo, numGroups, groupSize)
-
-    print("score = %d" % score)
-    print ("seating chart is... " + str(seatingChart))
 
 def testPythonStuff():
     testList = []
@@ -254,7 +268,8 @@ def testPythonStuff():
     testList[1].append(2)
     print(str(testList))
 
-smartGen()
+contest()
+
 
 
 
