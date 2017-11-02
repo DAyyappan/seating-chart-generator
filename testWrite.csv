@@ -1,0 +1,320 @@
+Seating Chart # ,1
+Score = ,24
+Group 1: ,"['CHARLIE', 'QUEBEC', 'GOLF', 'ROMEO', 'ALPHA']"
+Group 2: ,"['BRAVO', 'YANKEE', 'PAPA', 'DELTA', 'VICTOR']"
+Group 3: ,"['ECHO', 'HOTEL', 'WHISKEY', 'OSCAR']"
+Group 4: ,"['UNIFORM', 'ZULU', 'NOVEMBER', 'FOXTROT']"
+Group 5: ,"['KILO', 'SIERRA', 'MIKE', 'INDIA']"
+Group 6: ,"['LIMA', 'JULIET', 'XRAY', 'TANGO']"
+"
+"
+Seating Chart # ,2
+Score = ,26
+Group 1: ,"['QUEBEC', 'JULIET', 'ALPHA', 'YANKEE', 'ROMEO']"
+Group 2: ,"['HOTEL', 'OSCAR', 'FOXTROT', 'UNIFORM', 'PAPA']"
+Group 3: ,"['TANGO', 'XRAY', 'BRAVO', 'ZULU']"
+Group 4: ,"['DELTA', 'SIERRA', 'GOLF', 'INDIA']"
+Group 5: ,"['VICTOR', 'MIKE', 'WHISKEY', 'ECHO']"
+Group 6: ,"['LIMA', 'CHARLIE', 'KILO', 'NOVEMBER']"
+"
+"
+Seating Chart # ,3
+Score = ,24
+Group 1: ,"['YANKEE', 'JULIET', 'DELTA', 'VICTOR', 'ALPHA']"
+Group 2: ,"['QUEBEC', 'ZULU', 'CHARLIE', 'SIERRA', 'UNIFORM']"
+Group 3: ,"['PAPA', 'KILO', 'ROMEO', 'INDIA', 'HOTEL']"
+Group 4: ,"['GOLF', 'FOXTROT', 'BRAVO', 'OSCAR', 'MIKE']"
+Group 5: ,"['LIMA', 'NOVEMBER', 'TANGO']"
+Group 6: ,"['WHISKEY', 'XRAY', 'ECHO']"
+"
+"
+Seating Chart # ,4
+Score = ,26
+Group 1: ,"['ALPHA', 'CHARLIE', 'OSCAR', 'WHISKEY', 'FOXTROT']"
+Group 2: ,"['XRAY', 'DELTA', 'GOLF', 'KILO', 'UNIFORM']"
+Group 3: ,"['INDIA', 'MIKE', 'JULIET', 'ECHO', 'TANGO']"
+Group 4: ,"['ROMEO', 'QUEBEC', 'YANKEE', 'PAPA']"
+Group 5: ,"['SIERRA', 'VICTOR', 'BRAVO']"
+Group 6: ,"['NOVEMBER', 'HOTEL', 'LIMA', 'ZULU']"
+"
+"
+Seating Chart # ,5
+Score = ,23
+Group 1: ,"['WHISKEY', 'ECHO', 'ALPHA', 'QUEBEC']"
+Group 2: ,"['HOTEL', 'PAPA', 'VICTOR', 'XRAY', 'YANKEE']"
+Group 3: ,"['JULIET', 'OSCAR', 'BRAVO', 'ROMEO', 'DELTA']"
+Group 4: ,"['NOVEMBER', 'INDIA', 'CHARLIE', 'TANGO']"
+Group 5: ,"['ZULU', 'UNIFORM', 'LIMA', 'FOXTROT']"
+Group 6: ,"['KILO', 'GOLF', 'SIERRA', 'MIKE']"
+"
+"
+Seating Chart # ,6
+Score = ,23
+Group 1: ,"['ROMEO', 'INDIA', 'KILO', 'HOTEL', 'UNIFORM']"
+Group 2: ,"['ALPHA', 'JULIET', 'XRAY', 'BRAVO', 'QUEBEC']"
+Group 3: ,"['WHISKEY', 'TANGO', 'MIKE', 'LIMA']"
+Group 4: ,"['ECHO', 'NOVEMBER', 'DELTA', 'SIERRA']"
+Group 5: ,"['GOLF', 'CHARLIE', 'ZULU', 'FOXTROT']"
+Group 6: ,"['PAPA', 'YANKEE', 'OSCAR', 'VICTOR']"
+"
+"
+Seating Chart # ,7
+Score = ,23
+Group 1: ,"['PAPA', 'BRAVO', 'ALPHA', 'FOXTROT']"
+Group 2: ,"['NOVEMBER', 'INDIA', 'WHISKEY', 'KILO', 'HOTEL']"
+Group 3: ,"['JULIET', 'XRAY', 'ROMEO', 'ZULU', 'ECHO']"
+Group 4: ,"['QUEBEC', 'CHARLIE', 'YANKEE', 'OSCAR', 'UNIFORM']"
+Group 5: ,"['TANGO', 'LIMA', 'DELTA', 'SIERRA']"
+Group 6: ,"['MIKE', 'GOLF', 'VICTOR']"
+"
+"
+Seating Chart # ,8
+Score = ,23
+Group 1: ,"['YANKEE', 'JULIET', 'KILO', 'ECHO']"
+Group 2: ,"['HOTEL', 'UNIFORM', 'INDIA', 'QUEBEC', 'GOLF']"
+Group 3: ,"['TANGO', 'BRAVO', 'NOVEMBER', 'ZULU', 'PAPA']"
+Group 4: ,"['FOXTROT', 'DELTA', 'ALPHA', 'ROMEO']"
+Group 5: ,"['MIKE', 'SIERRA', 'VICTOR', 'XRAY']"
+Group 6: ,"['LIMA', 'WHISKEY', 'CHARLIE', 'OSCAR']"
+"
+"
+Seating Chart # ,9
+Score = ,23
+Group 1: ,"['TANGO', 'INDIA', 'PAPA', 'WHISKEY', 'BRAVO']"
+Group 2: ,"['VICTOR', 'UNIFORM', 'ROMEO', 'YANKEE', 'XRAY']"
+Group 3: ,"['ALPHA', 'ZULU', 'DELTA', 'GOLF']"
+Group 4: ,"['ECHO', 'OSCAR', 'JULIET', 'HOTEL']"
+Group 5: ,"['QUEBEC', 'FOXTROT', 'KILO', 'CHARLIE']"
+Group 6: ,"['SIERRA', 'MIKE', 'NOVEMBER', 'LIMA']"
+"
+"
+Seating Chart # ,10
+Score = ,29
+Group 1: ,"['PAPA', 'XRAY', 'ALPHA', 'QUEBEC', 'GOLF']"
+Group 2: ,"['VICTOR', 'ROMEO', 'WHISKEY', 'JULIET', 'BRAVO']"
+Group 3: ,"['UNIFORM', 'DELTA', 'SIERRA', 'INDIA']"
+Group 4: ,"['OSCAR', 'HOTEL', 'FOXTROT', 'TANGO']"
+Group 5: ,"['LIMA', 'KILO', 'CHARLIE', 'ECHO', 'YANKEE']"
+Group 6: ,"['MIKE', 'NOVEMBER', 'ZULU']"
+"
+"
+Seating Chart # ,11
+Score = ,24
+Group 1: ,"['QUEBEC', 'YANKEE', 'KILO', 'ALPHA']"
+Group 2: ,"['PAPA', 'HOTEL', 'BRAVO', 'FOXTROT', 'OSCAR']"
+Group 3: ,"['JULIET', 'NOVEMBER', 'ZULU', 'WHISKEY']"
+Group 4: ,"['SIERRA', 'DELTA', 'INDIA', 'UNIFORM', 'VICTOR']"
+Group 5: ,"['TANGO', 'CHARLIE', 'ROMEO', 'XRAY']"
+Group 6: ,"['GOLF', 'LIMA', 'ECHO', 'MIKE']"
+"
+"
+Seating Chart # ,12
+Score = ,28
+Group 1: ,"['HOTEL', 'KILO', 'UNIFORM', 'YANKEE', 'GOLF']"
+Group 2: ,"['BRAVO', 'PAPA', 'ECHO', 'DELTA', 'JULIET']"
+Group 3: ,"['OSCAR', 'TANGO', 'ROMEO', 'XRAY']"
+Group 4: ,"['VICTOR', 'QUEBEC', 'ALPHA', 'LIMA']"
+Group 5: ,"['INDIA', 'FOXTROT', 'ZULU', 'SIERRA']"
+Group 6: ,"['NOVEMBER', 'MIKE', 'WHISKEY', 'CHARLIE']"
+"
+"
+Seating Chart # ,13
+Score = ,26
+Group 1: ,"['WHISKEY', 'UNIFORM', 'GOLF', 'CHARLIE']"
+Group 2: ,"['TANGO', 'QUEBEC', 'VICTOR', 'DELTA', 'YANKEE']"
+Group 3: ,"['NOVEMBER', 'LIMA', 'FOXTROT', 'KILO']"
+Group 4: ,"['ALPHA', 'XRAY', 'ROMEO', 'PAPA', 'OSCAR']"
+Group 5: ,"['ECHO', 'MIKE', 'BRAVO', 'SIERRA']"
+Group 6: ,"['INDIA', 'HOTEL', 'JULIET', 'ZULU']"
+"
+"
+Seating Chart # ,14
+Score = ,33
+Group 1: ,"['WHISKEY', 'GOLF', 'JULIET', 'UNIFORM', 'ALPHA']"
+Group 2: ,"['YANKEE', 'KILO', 'VICTOR', 'ROMEO', 'QUEBEC']"
+Group 3: ,"['OSCAR', 'ECHO', 'FOXTROT', 'BRAVO', 'CHARLIE']"
+Group 4: ,"['ZULU', 'TANGO', 'SIERRA', 'DELTA']"
+Group 5: ,"['PAPA', 'HOTEL', 'NOVEMBER']"
+Group 6: ,"['MIKE', 'LIMA', 'XRAY', 'INDIA']"
+"
+"
+Seating Chart # ,15
+Score = ,24
+Group 1: ,"['XRAY', 'ECHO', 'QUEBEC', 'JULIET', 'OSCAR']"
+Group 2: ,"['YANKEE', 'KILO', 'TANGO', 'UNIFORM', 'SIERRA']"
+Group 3: ,"['ALPHA', 'CHARLIE', 'BRAVO', 'LIMA', 'FOXTROT']"
+Group 4: ,"['PAPA', 'ROMEO', 'HOTEL', 'MIKE']"
+Group 5: ,"['ZULU', 'GOLF', 'INDIA']"
+Group 6: ,"['VICTOR', 'NOVEMBER', 'WHISKEY', 'DELTA']"
+"
+"
+Seating Chart # ,16
+Score = ,25
+Group 1: ,"['PAPA', 'INDIA', 'ECHO', 'HOTEL', 'YANKEE']"
+Group 2: ,"['UNIFORM', 'VICTOR', 'WHISKEY', 'ALPHA', 'JULIET']"
+Group 3: ,"['KILO', 'TANGO', 'BRAVO', 'QUEBEC']"
+Group 4: ,"['XRAY', 'OSCAR', 'FOXTROT', 'GOLF']"
+Group 5: ,"['DELTA', 'ROMEO', 'MIKE', 'ZULU']"
+Group 6: ,"['SIERRA', 'NOVEMBER', 'LIMA', 'CHARLIE']"
+"
+"
+Seating Chart # ,17
+Score = ,24
+Group 1: ,"['GOLF', 'INDIA', 'WHISKEY', 'PAPA']"
+Group 2: ,"['OSCAR', 'HOTEL', 'ROMEO', 'VICTOR']"
+Group 3: ,"['FOXTROT', 'LIMA', 'TANGO', 'CHARLIE', 'ECHO']"
+Group 4: ,"['ZULU', 'DELTA', 'YANKEE', 'KILO', 'BRAVO']"
+Group 5: ,"['UNIFORM', 'SIERRA', 'XRAY', 'JULIET']"
+Group 6: ,"['ALPHA', 'NOVEMBER', 'QUEBEC', 'MIKE']"
+"
+"
+Seating Chart # ,18
+Score = ,23
+Group 1: ,"['ROMEO', 'HOTEL', 'WHISKEY', 'KILO']"
+Group 2: ,"['INDIA', 'XRAY', 'BRAVO', 'GOLF', 'YANKEE']"
+Group 3: ,"['JULIET', 'ZULU', 'QUEBEC', 'NOVEMBER', 'ALPHA']"
+Group 4: ,"['SIERRA', 'ECHO', 'OSCAR', 'UNIFORM', 'TANGO']"
+Group 5: ,"['CHARLIE', 'PAPA', 'FOXTROT']"
+Group 6: ,"['VICTOR', 'MIKE', 'LIMA', 'DELTA']"
+"
+"
+Seating Chart # ,19
+Score = ,24
+Group 1: ,"['SIERRA', 'VICTOR', 'BRAVO', 'FOXTROT']"
+Group 2: ,"['QUEBEC', 'INDIA', 'KILO', 'YANKEE', 'JULIET']"
+Group 3: ,"['ECHO', 'WHISKEY', 'GOLF', 'XRAY', 'MIKE']"
+Group 4: ,"['HOTEL', 'PAPA', 'ALPHA', 'ROMEO']"
+Group 5: ,"['DELTA', 'UNIFORM', 'NOVEMBER', 'LIMA']"
+Group 6: ,"['CHARLIE', 'TANGO', 'OSCAR', 'ZULU']"
+"
+"
+Seating Chart # ,20
+Score = ,24
+Group 1: ,"['ROMEO', 'OSCAR', 'HOTEL', 'INDIA']"
+Group 2: ,"['PAPA', 'ECHO', 'YANKEE', 'NOVEMBER', 'XRAY']"
+Group 3: ,"['ALPHA', 'TANGO', 'VICTOR', 'GOLF', 'CHARLIE']"
+Group 4: ,"['FOXTROT', 'SIERRA', 'KILO', 'DELTA', 'UNIFORM']"
+Group 5: ,"['JULIET', 'WHISKEY', 'LIMA', 'QUEBEC']"
+Group 6: ,"['BRAVO', 'MIKE', 'ZULU']"
+"
+"
+Seating Chart # ,21
+Score = ,24
+Group 1: ,"['VICTOR', 'ROMEO', 'ALPHA', 'XRAY', 'GOLF']"
+Group 2: ,"['HOTEL', 'WHISKEY', 'PAPA', 'UNIFORM', 'QUEBEC']"
+Group 3: ,"['ECHO', 'DELTA', 'LIMA', 'TANGO']"
+Group 4: ,"['INDIA', 'KILO', 'BRAVO', 'FOXTROT']"
+Group 5: ,"['OSCAR', 'JULIET', 'ZULU', 'SIERRA']"
+Group 6: ,"['CHARLIE', 'YANKEE', 'MIKE', 'NOVEMBER']"
+"
+"
+Seating Chart # ,22
+Score = ,31
+Group 1: ,"['DELTA', 'INDIA', 'UNIFORM', 'KILO', 'YANKEE']"
+Group 2: ,"['GOLF', 'CHARLIE', 'PAPA', 'QUEBEC', 'JULIET']"
+Group 3: ,"['VICTOR', 'TANGO', 'SIERRA', 'LIMA']"
+Group 4: ,"['ROMEO', 'ECHO', 'OSCAR', 'FOXTROT', 'BRAVO']"
+Group 5: ,"['ALPHA', 'MIKE', 'NOVEMBER', 'XRAY']"
+Group 6: ,"['HOTEL', 'WHISKEY', 'ZULU']"
+"
+"
+Seating Chart # ,23
+Score = ,24
+Group 1: ,"['JULIET', 'OSCAR', 'VICTOR', 'ROMEO', 'YANKEE']"
+Group 2: ,"['INDIA', 'UNIFORM', 'CHARLIE', 'BRAVO']"
+Group 3: ,"['KILO', 'SIERRA', 'FOXTROT', 'QUEBEC']"
+Group 4: ,"['ECHO', 'PAPA', 'MIKE', 'HOTEL', 'XRAY']"
+Group 5: ,"['TANGO', 'ALPHA', 'ZULU', 'LIMA', 'GOLF']"
+Group 6: ,"['DELTA', 'NOVEMBER', 'WHISKEY']"
+"
+"
+Seating Chart # ,24
+Score = ,23
+Group 1: ,"['UNIFORM', 'VICTOR', 'XRAY', 'PAPA']"
+Group 2: ,"['DELTA', 'ECHO', 'BRAVO', 'WHISKEY']"
+Group 3: ,"['OSCAR', 'HOTEL', 'ZULU', 'SIERRA', 'ROMEO']"
+Group 4: ,"['QUEBEC', 'INDIA', 'ALPHA', 'KILO', 'TANGO']"
+Group 5: ,"['GOLF', 'LIMA', 'JULIET', 'YANKEE']"
+Group 6: ,"['MIKE', 'CHARLIE', 'FOXTROT', 'NOVEMBER']"
+"
+"
+Seating Chart # ,25
+Score = ,25
+Group 1: ,"['DELTA', 'JULIET', 'UNIFORM', 'KILO', 'YANKEE']"
+Group 2: ,"['HOTEL', 'INDIA', 'WHISKEY', 'TANGO']"
+Group 3: ,"['CHARLIE', 'GOLF', 'ALPHA', 'QUEBEC', 'ECHO']"
+Group 4: ,"['ZULU', 'FOXTROT', 'XRAY', 'SIERRA']"
+Group 5: ,"['ROMEO', 'LIMA', 'OSCAR', 'VICTOR']"
+Group 6: ,"['BRAVO', 'PAPA', 'NOVEMBER', 'MIKE']"
+"
+"
+Seating Chart # ,26
+Score = ,23
+Group 1: ,"['QUEBEC', 'CHARLIE', 'MIKE', 'YANKEE', 'INDIA']"
+Group 2: ,"['VICTOR', 'JULIET', 'UNIFORM', 'ALPHA', 'KILO']"
+Group 3: ,"['TANGO', 'ECHO', 'GOLF', 'FOXTROT', 'WHISKEY']"
+Group 4: ,"['HOTEL', 'BRAVO', 'PAPA', 'SIERRA']"
+Group 5: ,"['DELTA', 'ROMEO', 'OSCAR']"
+Group 6: ,"['XRAY', 'ZULU', 'LIMA', 'NOVEMBER']"
+"
+"
+Seating Chart # ,27
+Score = ,23
+Group 1: ,"['OSCAR', 'ECHO', 'DELTA', 'INDIA', 'ROMEO']"
+Group 2: ,"['ALPHA', 'CHARLIE', 'UNIFORM', 'YANKEE', 'VICTOR']"
+Group 3: ,"['GOLF', 'TANGO', 'NOVEMBER', 'KILO']"
+Group 4: ,"['PAPA', 'WHISKEY', 'JULIET', 'HOTEL']"
+Group 5: ,"['MIKE', 'ZULU', 'LIMA', 'SIERRA']"
+Group 6: ,"['BRAVO', 'FOXTROT', 'XRAY', 'QUEBEC']"
+"
+"
+Seating Chart # ,28
+Score = ,23
+Group 1: ,"['QUEBEC', 'VICTOR', 'BRAVO', 'YANKEE', 'XRAY']"
+Group 2: ,"['ROMEO', 'PAPA', 'JULIET', 'GOLF']"
+Group 3: ,"['ALPHA', 'LIMA', 'OSCAR', 'KILO']"
+Group 4: ,"['WHISKEY', 'HOTEL', 'UNIFORM', 'SIERRA']"
+Group 5: ,"['INDIA', 'NOVEMBER', 'CHARLIE', 'ZULU', 'TANGO']"
+Group 6: ,"['DELTA', 'FOXTROT', 'MIKE', 'ECHO']"
+"
+"
+Seating Chart # ,29
+Score = ,25
+Group 1: ,"['WHISKEY', 'DELTA', 'FOXTROT', 'ECHO']"
+Group 2: ,"['ALPHA', 'YANKEE', 'CHARLIE', 'VICTOR', 'GOLF']"
+Group 3: ,"['INDIA', 'HOTEL', 'SIERRA', 'QUEBEC', 'OSCAR']"
+Group 4: ,"['XRAY', 'UNIFORM', 'ROMEO', 'JULIET']"
+Group 5: ,"['PAPA', 'MIKE', 'ZULU', 'NOVEMBER']"
+Group 6: ,"['TANGO', 'BRAVO', 'KILO', 'LIMA']"
+"
+"
+Seating Chart # ,30
+Score = ,23
+Group 1: ,"['OSCAR', 'DELTA', 'PAPA', 'YANKEE', 'ROMEO']"
+Group 2: ,"['SIERRA', 'VICTOR', 'JULIET', 'BRAVO', 'XRAY']"
+Group 3: ,"['FOXTROT', 'CHARLIE', 'ALPHA', 'ZULU']"
+Group 4: ,"['ECHO', 'KILO', 'HOTEL', 'WHISKEY']"
+Group 5: ,"['NOVEMBER', 'MIKE', 'INDIA', 'TANGO']"
+Group 6: ,"['LIMA', 'GOLF', 'QUEBEC', 'UNIFORM']"
+"
+"
+Seating Chart # ,31
+Score = ,23
+Group 1: ,"['JULIET', 'ROMEO', 'VICTOR', 'XRAY']"
+Group 2: ,"['HOTEL', 'INDIA', 'UNIFORM', 'GOLF']"
+Group 3: ,"['BRAVO', 'KILO', 'CHARLIE', 'FOXTROT', 'DELTA']"
+Group 4: ,"['QUEBEC', 'LIMA', 'OSCAR', 'YANKEE', 'ZULU']"
+Group 5: ,"['PAPA', 'ALPHA', 'WHISKEY', 'ECHO']"
+Group 6: ,"['MIKE', 'TANGO', 'SIERRA', 'NOVEMBER']"
+"
+"
+Seating Chart # ,32
+Score = ,25
+Group 1: ,"['ECHO', 'XRAY', 'KILO', 'GOLF', 'INDIA']"
+Group 2: ,"['JULIET', 'PAPA', 'VICTOR', 'BRAVO', 'YANKEE']"
+Group 3: ,"['UNIFORM', 'SIERRA', 'TANGO', 'CHARLIE', 'OSCAR']"
+Group 4: ,"['QUEBEC', 'WHISKEY', 'ZULU', 'FOXTROT']"
+Group 5: ,"['HOTEL', 'MIKE', 'ROMEO']"
+Group 6: ,"['NOVEMBER', 'LIMA', 'ALPHA', 'DELTA']"
+"
+"

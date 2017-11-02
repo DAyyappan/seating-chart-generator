@@ -225,32 +225,91 @@ def stepGroups(groupNum, seatNum, numGroups):
 
 def smartGen(studentInfo):
 # execute and time random generation THEN conflict checking method of seating chart generation
-    numGroups = 14
-    groupSize = 2
+    numGroups = 6
+    groupSize = 5
     classArrangement = {'F':[1,2], 'M':[3,4], 'R':[5,6]}
 
     score, seatingChart = generateSmartSeatingChart(studentInfo, numGroups, groupSize, classArrangement)
 
     return score, seatingChart
 
+def appendChart(allSeatingCharts, allScores, newSeats, newScore):
+# smartly generate seating chart for all students given number of groups and group size
+# arg seatingCharts -- list of seating charts and scores
+# arg newSeats -- new seats to be appended
+# arg newScore -- score of new seating chart
+# return seatingCharts -- array of seating charts and scores
 
-def contest():
+    allSeatingCharts.append(newSeats)
+    allScores.append(newScore)
+
+    return allSeatingCharts, allScores
+
+
+
+def exportToCSV(fileName, studentInfo, allSeatingCharts, allScores, top20):
+
+    topCharts = []
+    topScores = []
+
+    for i in range(len(allScores)):
+        lastChart = allSeatingCharts.pop()
+        lastScore = allScores.pop()
+        if (lastScore >= top20):
+            topCharts.append(lastChart)
+            topScores.append(lastScore)
+
+
+
+    f = open(fileName, 'w')
+    writer = csv.writer(f, delimiter = ',')
+
+    for i in range(len(topScores)):
+        writer.writerow(["Seating Chart # ", (i+1)])
+        writeChart = topCharts.pop()
+        writeScore = topScores.pop()
+        writer.writerow(["Score = ", writeScore])
+        for group in range(len(writeChart)):
+            members = []
+            for seat in range(len(writeChart[group])):
+                student = int(writeChart[group][seat])
+                if (student == 0):
+                    break
+                members.append(studentInfo[student]['Name'])
+            writer.writerow(["Group %d: " % (group+1), members])
+
+        writer.writerow("\n")
+
+    f.close()
+
+
+
+
+def execute():
     studentInfo = importClass('StudentData.csv')
-    numCharts = 3000
+    numCharts = 2500
 
     #smartGen
     tStart = time.clock()
-    score = -1
     maxScore = 0
     bestSeats = []
+    allSeatingCharts = []
+    allScores = []
+    plotx = []
+    ploty = []
 
     for n in range(numCharts):
+        score = 0
         while (score <= 0):
             score, seatingChart = smartGen(studentInfo)
         if (score > maxScore):
             bestSeats = seatingChart
             maxScore = score
-        score = 0
+        if (n > 20):
+            plotx.append(n)
+            top20 = sorted(allScores,reverse=True)[20]
+            ploty.append(top20)
+        allSeatingCharts, allScores = appendChart(allSeatingCharts, allScores, seatingChart, score)
 
     tEnd = time.clock()
     totalTime = tEnd - tStart
@@ -258,6 +317,13 @@ def contest():
     print("Best Seating Chart:" )
     print(str(bestSeats))
 
+    top20 = sorted(allScores,reverse=True)[20]
+    print ("The top 20 charts all have scores above %d " %top20)
+
+    plt.plot(plotx, ploty)
+    plt.show()
+
+    exportToCSV('testWrite.csv', studentInfo, allSeatingCharts, allScores, top20)
 
 
 def testPythonStuff():
@@ -268,14 +334,9 @@ def testPythonStuff():
     testList[1].append(2)
     print(str(testList))
 
-contest()
-
-
-
+execute()
 
 # To do:
-# Create and comment the following functions:
-#   generateValidSeatingChart
-#   generateRandomSeatingChart -- DONE
-#   evaluateSeatingChart -- DONE
-#   exportClassesToCSV
+# -- Record successful seating charts
+# -- Export successful charts to csv
+# -- (optional) evaluate similarity of seating charts to provide variety
