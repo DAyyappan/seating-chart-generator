@@ -44,6 +44,48 @@ def importClass(fileName):
     return studentInfo
 
 
+def importClassGroups(fileName):
+# Import class from .csv in project folder
+# arg filename -- name of file
+# return studentInfo -- list of dictionaries
+
+    #use csv to open file and skip header row
+    f = open(fileName)
+    csv_f = csv.reader(f)
+    next(csv_f)
+
+    #create empty dictionary
+    studentInfo = [{'Name':'', 'PositivePairs':[], 'NegativePairs':[], 'AntiGroups':[], 'LocationPref':[]}]
+
+    #parse csv to add as dictionary to list studentInfo
+    for row in csv_f:
+        index = int(row[0])
+        Name = row[1]
+        if not(row[2] == ""):
+            PositivePairs = [int(pp) for pp in row[2].split(',')]
+        else:
+            PositivePairs = ""
+
+        if not(row[3] == ""):
+            NegativePairs = [int(np) for np in row[3].split(',')]
+        else:
+            NegativePairs = ""
+
+        if not(row[4] == ""):
+            AntiGroups = [int(pp) for pp in row[4].split(',')]
+        else:
+            AntiGroups = ""
+
+        LocationPref = [lp.upper().strip() for lp in row[5].split(',')]
+        newDict = {'Name':Name, 'PositivePairs':PositivePairs, 'NegativePairs':NegativePairs, 'AntiGroups':AntiGroups, 'LocationPref':LocationPref}
+        studentInfo.append(newDict)
+
+        #debugging
+        #print("Student %d data: " % index + str(studentInfo[index]))
+
+    return studentInfo
+
+
 def evaluateSeatingChart(seatingChart, studentInfo, FMR):
 # score seating chart based on student preferences
 # arg seatingChart -- matrix of students in groups
@@ -184,7 +226,7 @@ def assignSmartSeats(studentInfo, numGroups, groupSize):
 
     while (np.sum(assigned) < numStudents):
         if (assigned[student] == False):
-            if((student not in negList[groupNum]) and (len(seatingChart[groupNum]) < groupSize)):
+            if((student not in negList[groupNum]) and (len(seatingChart[groupNum]) < groupSize) and ((groupNum+1) not in studentInfo[student]['AntiGroups'])):
                 seatingChart[groupNum].append(student)
                 #print ("student %d assigned to group %d" % (student, groupNum))
                 #print ("new seating chart = \n " + str(seatingChart))
@@ -287,7 +329,8 @@ def exportToCSV(fileName, studentInfo, allSeatingCharts, allScores, top20):
 
 def execute():
     studentInfo = importClass('StudentData.csv')
-    numCharts = 2500
+    studentInfoGroups = importClassGroups('StudentData-wGroups.csv')
+    numCharts = 100
 
     #smartGen
     tStart = time.clock()
@@ -301,7 +344,7 @@ def execute():
     for n in range(numCharts):
         score = 0
         while (score <= 0):
-            score, seatingChart = smartGen(studentInfo)
+            score, seatingChart = smartGen(studentInfoGroups)
         if (score > maxScore):
             bestSeats = seatingChart
             maxScore = score
