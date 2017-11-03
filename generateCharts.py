@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import time
+import math
 
 
 
@@ -86,44 +87,6 @@ def importClassGroups(fileName):
     return studentInfo
 
 
-def evaluateSeatingChart(seatingChart, studentInfo, FMR):
-# score seating chart based on student preferences
-# arg seatingChart -- matrix of students in groups
-# arg studentInfo -- list of dictionaries of student Info
-# arg FMR -- dictionary of which tables in classroom are front, middle, reader
-# return score -- int score of seatingChart (-1 is invalid; greater is better)
-
-    score = 0
-
-    for group in range(len(seatingChart)):
-        negPairs = []
-        # create negativePairs list for group
-        for s in seatingChart[group]:
-            for n in studentInfo[int(s)]['NegativePairs']:
-                negPairs.append(int(n))
-
-        # change score for each student
-        for seat in range(len(seatingChart[0])):
-            student = int(seatingChart[group][seat])
-
-
-            if student in negPairs:
-                return -1
-
-            # if any positive pair is in this group, +1
-            for pos in studentInfo[student]['PositivePairs']:
-                if pos in seatingChart[group]:
-                    score += 1
-
-            # if student is sitting where they prefer, +1
-            # if student is sitting the opposite of where they prefer, -2
-            for loc in studentInfo[student]['LocationPref']:
-                if (group+1) in FMR[loc]:
-                    score += 1
-                if ((loc == 'F') and ((group+1) in FMR['R'])) or ((loc == 'R') and ((group+1) in FMR['F'])):
-                    score -= 2
-
-    return score
 
 
 def generateSmartSeatingChart(studentInfo, numGroups, groupSize, FMR):
@@ -140,12 +103,13 @@ def generateSmartSeatingChart(studentInfo, numGroups, groupSize, FMR):
         attempts += 1
         success, seatingChart = assignSmartSeats(studentInfo, numGroups, groupSize)
 
+    print ("Smart Seats assigned")
     #convert chart from lists to 2-D array
     seatingChart = convertChartToMatrix(seatingChart, groupSize)
 
     #score chart
     score = scoreChart(studentInfo, seatingChart, FMR)
-    #print("Attempt %d successful with score %d" % (attempts, score))
+    print("Attempt %d successful with score %d" % (attempts, score))
 
     return score, seatingChart
 
@@ -174,24 +138,36 @@ def scoreChart(studentInfo, seatingChart, FMR):
 # return score -- seating chart score
 
     score = 0
+    numStudentsInGroup = 0
+    numGroups = len(seatingChart)
+    numStudents = len(studentInfo) -1
+    minStudentsInGroup = math.floor(numStudents / numGroups)
+
 
     for group in range(len(seatingChart)):
         # change score for each student
+        numStudentsInGroup = 0
         for seat in range(len(seatingChart[0])):
             student = int(seatingChart[group][seat])
+            if not(student == 0):
+                numStudentsInGroup += 1
 
             # if any positive pair is in this group, +1
             for pos in studentInfo[student]['PositivePairs']:
                 if pos in seatingChart[group]:
                     score += 1
+        if (numStudentsInGroup < minStudentsInGroup):
+            score -= 2
+
+
 
             # if student is sitting where they prefer, +1
             # if student is sitting the opposite of where they prefer, -2
-            for loc in studentInfo[student]['LocationPref']:
-                if (group+1) in FMR[loc]:
-                    score += 1
-                if ((loc == 'F') and ((group+1) in FMR['R'])) or ((loc == 'R') and ((group+1) in FMR['F'])):
-                    score -= 2
+            # for loc in studentInfo[student]['LocationPref']:
+            #     if (group+1) in FMR[loc]:
+            #         score += 1
+            #     if ((loc == 'F') and ((group+1) in FMR['R'])) or ((loc == 'R') and ((group+1) in FMR['F'])):
+            #         score -= 2
 
     return score
 
@@ -328,13 +304,14 @@ def exportToCSV(fileName, studentInfo, allSeatingCharts, allScores, top20):
 
 
 def execute():
-    studentInfo = importClass('StudentData.csv')
-    studentInfoGroups = importClassGroups('StudentData-wGroups.csv')
+    #studentInfo = importClass('StudentData.csv')
+    studentInfoGroups = importClassGroups('LeafClass.csv')
+    print ("import completed")
     numCharts = 100
 
     #smartGen
     tStart = time.clock()
-    maxScore = 0
+    maxScore = -1
     bestSeats = []
     allSeatingCharts = []
     allScores = []
@@ -342,9 +319,10 @@ def execute():
     ploty = []
 
     for n in range(numCharts):
-        score = 0
-        while (score <= 0):
+        score = -1
+        while (score < 0):
             score, seatingChart = smartGen(studentInfoGroups)
+        print ("smart gen completed")
         if (score > maxScore):
             bestSeats = seatingChart
             maxScore = score
@@ -366,7 +344,7 @@ def execute():
     plt.plot(plotx, ploty)
     plt.show()
 
-    exportToCSV('testWrite.csv', studentInfo, allSeatingCharts, allScores, top20)
+    exportToCSV('testWrite.csv', studentInfoGroups, allSeatingCharts, allScores, top20)
 
 
 def testPythonStuff():
