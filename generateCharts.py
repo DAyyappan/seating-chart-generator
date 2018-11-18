@@ -56,7 +56,7 @@ def importClassGroups(fileName):
     next(csv_f)
 
     #create empty dictionary
-    studentInfo = [{'Name':'', 'PositivePairs':[], 'NegativePairs':[], 'AntiGroups':[], 'LocationPref':[]}]
+    studentInfo = [{'Name':'', 'PositivePairs':[], 'NegativePairs':[], 'PositiveGroups': [], 'AntiGroups':[], 'LocationPref':[]}]
 
     #parse csv to add as dictionary to list studentInfo
     for row in csv_f:
@@ -73,12 +73,19 @@ def importClassGroups(fileName):
             NegativePairs = ""
 
         if not(row[4] == ""):
-            AntiGroups = [int(pp) for pp in row[4].split(',')]
+            PosGroups = [int(pg) for pg in row[4].split(',')]
+        else:
+            PosGroups = ""
+
+        if not(row[5] == ""):
+            AntiGroups = [int(pp) for pp in row[5].split(',')]
         else:
             AntiGroups = ""
 
-        LocationPref = [lp.upper().strip() for lp in row[5].split(',')]
-        newDict = {'Name':Name, 'PositivePairs':PositivePairs, 'NegativePairs':NegativePairs, 'AntiGroups':AntiGroups, 'LocationPref':LocationPref}
+
+
+        LocationPref = [lp.upper().strip() for lp in row[6].split(',')]
+        newDict = {'Name':Name, 'PositivePairs':PositivePairs, 'NegativePairs':NegativePairs, 'PositiveGroups':PosGroups, 'AntiGroups':AntiGroups, 'LocationPref':LocationPref}
         studentInfo.append(newDict)
 
         #debugging
@@ -156,8 +163,12 @@ def scoreChart(studentInfo, seatingChart, FMR):
             for pos in studentInfo[student]['PositivePairs']:
                 if pos in seatingChart[group]:
                     score += 1
+
+            if studentInfo[student]['PositiveGroups'] == (group+1):
+                score += 1
+
         if (numStudentsInGroup < minStudentsInGroup):
-            score -= 2
+            score -= 5
 
 
 
@@ -307,7 +318,7 @@ def execute():
     #studentInfo = importClass('StudentData.csv')
     studentInfoGroups = importClassGroups('LeafClass.csv')
     print ("import completed")
-    numCharts = 100
+    numCharts = 10000
 
     #smartGen
     tStart = time.clock()
@@ -344,7 +355,7 @@ def execute():
     plt.plot(plotx, ploty)
     plt.show()
 
-    exportToCSV('testWrite.csv', studentInfoGroups, allSeatingCharts, allScores, top20)
+    exportToCSV('LeafGroups.csv', studentInfoGroups, allSeatingCharts, allScores, top20)
 
 
 def testPythonStuff():
